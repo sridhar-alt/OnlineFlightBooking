@@ -1,0 +1,28 @@
+﻿@model FlightMVC.Models.SignInModel
+
+@{
+    ViewBag.Title = "SignIn";
+}
+
+<h2>SignIn</h2>
+
+@using (Html.BeginForm("SignIn", "User", FormMethod.Post))
+{
+    <table>
+        <tr>
+            <td>Mobile Number</td>
+            <td>@Html.TextBoxFor(model => model.Mobile, new { @MaxLength = 10 })</td>
+        </tr>
+        <tr>
+            <td>Password</td>
+            <td>@Html.TextBoxFor(model => model.Password)</td>
+        </tr>
+    </table>
+    <a>
+        <input type='submit' value='Login' />
+    </a>
+    <a>
+        <input type='button' value='Register' />
+    </a>
+}
+

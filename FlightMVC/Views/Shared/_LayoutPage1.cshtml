@@ -1,0 +1,16 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    <h2>ONLINE FLIGHT BOOKING</h2>
+    <div>
+        @Html.ActionLink("SignUp", "SignUp", "User")
+        @Html.ActionLink("SignIn", "SignIn", "User")
+        @RenderBody()
+    </div>
+</body>
+</html>

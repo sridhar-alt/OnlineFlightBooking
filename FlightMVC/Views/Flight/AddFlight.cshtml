@@ -1,0 +1,58 @@
+﻿@model FlightMVC.Models.FlightModel
+
+@{
+    ViewBag.Title = "AddFlight";
+}
+
+<h2>AddFlight</h2>
+
+@using (Html.BeginForm("AddFlight", "Flight", FormMethod.Post))
+{
+    <table>
+        <tr style="border-spacing:10px">
+            <td>FlightName</td>
+            <td>
+                @Html.TextBoxFor(model => model.FlightName, new { @MaxLength = 25 })
+                @Html.ValidationMessageFor(Model => Model.FlightName, "", new { style = "display:hidden;color:red;" })
+            </td>
+        </tr>
+        <tr>
+            <td>From Location<td>
+            <td>
+                @Html.TextBoxFor(model => model.FromLocation, new { @MaxLength = 10 })
+                @Html.ValidationMessageFor(Model => Model.FromLocation, "", new { style = "display:hidden;color:red" })
+            </td>
+        </tr>
+        <tr>
+            <td>ToLocation</td>
+            <td>
+                @Html.TextBoxFor(model => model.ToLocation)
+                @Html.ValidationMessageFor(Model => Model.ToLocation, "", new { style = "display:hidden;color:red" })
+            </td>
+        </tr>
+        <tr>
+            <td>ArrivalTime</td>
+            <td>
+                @Html.TextBoxFor(model => model.ArrivalTime)
+            </td>
+        </tr>
+        <tr>
+            <td>Duration</td>
+            <td>
+                @Html.TextBoxFor(model => model.Duration)
+            </td>
+        </tr>
+        <tr>
+            <td>TotalSeat</td>
+            <td>
+                @Html.TextBoxFor(model => model.TotalSeat, new { @MaxLength = 50 })
+            </td>
+        </tr>
+        <tr>
+            <td>
+            <input type="submit" value="Register" />
+            </td>
+        </tr>
+    </table>
+}
+

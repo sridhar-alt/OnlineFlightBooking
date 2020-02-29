@@ -1,0 +1,34 @@
+﻿@model IEnumerable<OnilneFlightBooking.Entity.FlightEntity>
+@{
+    ViewBag.Title = "Displayflight";
+}
+
+<h2>AdminPage</h2>
+
+@Html.ActionLink("AddFlight", "AddFlight", "Flight")
+
+<table>
+    <tr>
+        <th>Flight Id </th>
+        <th>Flight Name </th>
+        <th> FromLocation</th>
+        <th>ToLocation</th>
+        <th>ArrivalTime</th>
+        <th>Duration</th>
+        <th>TotalSeat</th>
+    </tr>
+    @foreach (OnilneFlightBooking.Entity.FlightEntity flight in Model)
+    {
+        <tr>
+            <td>@flight.Flight_Id</td>
+            <td>@flight.FlightName</td>
+            <td>@flight.FromLocation</td>
+            <td>@flight.ToLocation</td>
+            <td>@flight.ArrivalTime.ToShortTimeString()</td>
+            <td>@flight.Duration.ToShortTimeString()</td>
+            <td>@flight.TotalSeat</td>
+            <td></td>
+        </tr>
+    }
+</table>
+

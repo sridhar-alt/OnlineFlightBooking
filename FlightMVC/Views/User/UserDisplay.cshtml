@@ -1,0 +1,12 @@
+﻿@model OnilneFlightBooking.Entity.UserEntity
+
+@{
+    ViewBag.Title = "UserDisplay";
+}
+
+@if (TempData["message"] != null)
+{
+    @Html.Label((string)TempData["message"])
+}
+<h2>UserDisplay</h2>
+
