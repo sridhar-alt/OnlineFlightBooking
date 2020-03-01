@@ -1,0 +1,68 @@
+﻿@model FlightMVC.Models.FlightModel
+
+@{
+    ViewBag.Title = "EditFlight";
+}
+
+<h2>EditFlight</h2>
+
+@using (Html.BeginForm("EditFlight", "Flight"))
+{
+<table border="1" cellspacing="0">
+    <tr style="border-spacing:10px">
+        <td>@Html.LabelFor(model => model.Flight_Id)</td>
+        <td>
+            @Html.ValueFor(model => model.Flight_Id)
+            @Html.ValidationMessageFor(Model => Model.Flight_Id, "", new { style = "display:hidden;color:red;" })
+        </td>
+    </tr>
+    <tr style="border-spacing:10px">
+        <td>@Html.LabelFor(model => model.FlightName)</td>
+        <td>
+            @Html.EditorFor(model => model.FlightName, new { @MaxLength = 25 })
+            @Html.ValidationMessageFor(Model => Model.FlightName, "", new { style = "display:hidden;color:red;" })
+        </td>
+    </tr>
+    <tr>
+        <td>From Location
+        <td>
+        <td>
+            @Html.EditorFor(model => model.FromLocation, new { @MaxLength = 10 })
+            @Html.ValidationMessageFor(Model => Model.FromLocation, "", new { style = "display:hidden;color:red" })
+        </td>
+    </tr>
+    <tr>
+        <td>ToLocation</td>
+        <td>
+            @Html.EditorFor(model => model.ToLocation)
+            @Html.ValidationMessageFor(Model => Model.ToLocation, "", new { style = "display:hidden;color:red" })
+        </td>
+    </tr>
+    <tr>
+        <td>ArrivalTime</td>
+        <td>
+            @Html.EditorFor(model => model.ArrivalTime)
+        </td>
+    </tr>
+    <tr>
+        <td>Duration</td>
+        <td>
+            @Html.EditorFor(model => model.Duration)
+        </td>
+    </tr>
+    <tr>
+        <td>TotalSeat</td>
+        <td>
+            @Html.EditorFor(model => model.TotalSeat, new { @MaxLength = 50 })
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <input type="submit" value="Register" />
+        </td>
+    </tr>
+    @Html.ActionLink("Go back to DisplayFlight", "DisplayFlight", "Flight")
+</table>
+}
+
+

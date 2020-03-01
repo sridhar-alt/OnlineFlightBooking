@@ -30,6 +30,22 @@ namespace OnlineFlightbooking.DAL
             userContext.FlightEntity.Add(flight);
             userContext.SaveChanges();
         }
+
+        //public static void DeleteFlight(int flightId)
+        //{
+        //    UserContext userContext = new UserContext();
+        //    FlightEntity flight = userContext.FlightEntity.Where(model => model.Flight_Id == flightId).SingleOrDefault();
+        //    userContext.FlightEntity.Attach(flight);
+        //    userContext.FlightEntity.Remove(flight);
+        //    userContext.SaveChanges();
+        //}
+        //public static FlightEntity GetDetails(int flightId)
+        //{
+        //    UserContext userContext = new UserContext();
+        //    FlightEntity flight = userContext.FlightEntity.Where(model => model.Flight_Id == flightId).SingleOrDefault();
+        //    return flight;
+        //}
+
         //public static void DeleteFlight(int id)
         //{
         //    using (SqlConnection sqlConnection = new SqlConnection(connectionString))

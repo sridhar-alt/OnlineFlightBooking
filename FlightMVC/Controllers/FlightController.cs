@@ -42,5 +42,21 @@ namespace FlightMVC.Controllers
             FlightRepository.AddFlight(flight);
             return View();
         }
+        //public ActionResult EditFlight(int Id)
+        //{
+        //        FlightEntity flight = FlightRepository.GetDetails(Id);
+        //        return View(flight);
+        //}
+        //[HttpPost]
+        //public ActionResult EditFlight(FlightModel edit)
+        //{
+        //    return RedirectToAction("Displayflight");
+        //}
+        //public ActionResult DeleteFlight(int flightId)
+        //{
+        //    FlightEntity flight=FlightRepository.GetDetails(flightId);
+
+        //    return View(flight);
+        //}
     }
 }

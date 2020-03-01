@@ -10,6 +10,7 @@ namespace OnilneFlightBooking.Entity
     public class FlightEntity
     {
         [Key]
+        [Required]
         public int Flight_Id { get; set; }
         public string FlightName { get; set; }
         public string FromLocation { get; set; }
