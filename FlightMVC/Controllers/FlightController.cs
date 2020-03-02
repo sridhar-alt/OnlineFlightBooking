@@ -40,23 +40,41 @@ namespace FlightMVC.Controllers
             flight.ToLocation = add.ToLocation;
             flight.TotalSeat = add.TotalSeat;
             FlightRepository.AddFlight(flight);
-            return View();
+            return RedirectToAction("Displayflight");
         }
-        //public ActionResult EditFlight(int Id)
-        //{
-        //        FlightEntity flight = FlightRepository.GetDetails(Id);
-        //        return View(flight);
-        //}
-        //[HttpPost]
-        //public ActionResult EditFlight(FlightModel edit)
-        //{
-        //    return RedirectToAction("Displayflight");
-        //}
-        //public ActionResult DeleteFlight(int flightId)
-        //{
-        //    FlightEntity flight=FlightRepository.GetDetails(flightId);
-
-        //    return View(flight);
-        //}
+        [HttpGet]
+        public ActionResult EditFlight(int Id)
+        {
+            FlightEntity flight = FlightRepository.GetDetails(Id);
+            return View(flight);
+        }
+        [HttpPost]
+        public ActionResult EditFlight(FlightModel edit)
+        {
+            FlightEntity flight = new FlightEntity();
+            flight.Flight_Id = edit.Flight_Id;
+            flight.FlightName = edit.FlightName;
+            flight.FromLocation = edit.FromLocation;
+            flight.ArrivalTime = edit.ArrivalTime;
+            flight.Duration = edit.Duration;
+            flight.ToLocation = edit.ToLocation;
+            flight.TotalSeat = edit.TotalSeat;
+            FlightRepository.UpdateFlight(flight);
+            return RedirectToAction("Displayflight");
+        }
+        [HttpGet]
+        public ActionResult DeleteFlight(int Id)
+        {
+            FlightEntity flight = FlightRepository.GetDetails(Id);
+            return View(flight);
+        }
+        [HttpPost]
+        public ActionResult DeleteFlight(FlightModel delete)
+        {
+            FlightEntity flight = new FlightEntity();
+            flight.Flight_Id=delete.Flight_Id;
+            FlightRepository.DeleteFlight(flight);
+            return RedirectToAction("Displayflight");
+        }
     }
 }

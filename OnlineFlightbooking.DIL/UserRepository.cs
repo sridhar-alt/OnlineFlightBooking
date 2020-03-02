@@ -23,15 +23,15 @@ namespace OnlineFlightbooking.DAL
         public static string ValidateLogin(UserEntity user)
         {
             UserContext userContext = new UserContext();
-            List<UserEntity> userList = userContext.UserEntity.ToList();
-            foreach(var value in userList)
+            UserEntity userDb = userContext.UserEntity.Where(model => model.Mobile == user.Mobile).Where(model=>model.Password==user.Password).SingleOrDefault();
+            if (userDb!=null)
             {
-                if(user.Mobile==value.Mobile&& user.Password==value.Password)
-                {
-                    return value.Role;
-                }
+                return userDb.Role;
             }
-            return "NotFound";
+            else
+            {
+                return "NotFound";
+            }
         }
 
         //public static DataTable ViewFlightDetails()

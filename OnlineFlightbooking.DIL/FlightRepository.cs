@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,21 +31,28 @@ namespace OnlineFlightbooking.DAL
             userContext.FlightEntity.Add(flight);
             userContext.SaveChanges();
         }
+        public static FlightEntity GetDetails(int flightId)
+        {
+            UserContext userContext = new UserContext();
+            FlightEntity flight = userContext.FlightEntity.Where(model => model.Flight_Id == flightId).SingleOrDefault();
+            return flight;
+        }
 
-        //public static void DeleteFlight(int flightId)
-        //{
-        //    UserContext userContext = new UserContext();
-        //    FlightEntity flight = userContext.FlightEntity.Where(model => model.Flight_Id == flightId).SingleOrDefault();
-        //    userContext.FlightEntity.Attach(flight);
-        //    userContext.FlightEntity.Remove(flight);
-        //    userContext.SaveChanges();
-        //}
-        //public static FlightEntity GetDetails(int flightId)
-        //{
-        //    UserContext userContext = new UserContext();
-        //    FlightEntity flight = userContext.FlightEntity.Where(model => model.Flight_Id == flightId).SingleOrDefault();
-        //    return flight;
-        //}
+        public static void UpdateFlight(FlightEntity flight)
+        {
+            UserContext userContext = new UserContext();
+            userContext.Entry(flight).State = EntityState.Modified;
+            int change = userContext.SaveChanges();
+        }
+
+        public static void DeleteFlight(FlightEntity flight)
+        {
+            UserContext userContext = new UserContext();
+            FlightEntity flightEntity = userContext.FlightEntity.Where(model => model.Flight_Id == flight.Flight_Id).SingleOrDefault();
+            userContext.FlightEntity.Attach(flightEntity);
+            userContext.FlightEntity.Remove(flightEntity);
+            userContext.SaveChanges();
+        }
 
         //public static void DeleteFlight(int id)
         //{
