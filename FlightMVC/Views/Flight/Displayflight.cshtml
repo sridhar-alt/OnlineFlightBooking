@@ -4,31 +4,32 @@
 }
 
 <h2>AdminPage</h2>
-
+<h3>@TempData["message"]</h3>
 @Html.ActionLink("AddFlight", "AddFlight", "Flight")
 
 <table cellspacing="0" border="1">
     <tr>
-        <th>Flight Id </th>
-        <th>Flight Name </th>
-        <th> FromLocation</th>
+        <th>Flight Id</th>
+        <th>Flight Name</th>
+        <th>FromLocation</th>
         <th>ToLocation</th>
         <th>ArrivalTime</th>
         <th>Duration</th>
         <th>TotalSeat</th>
+        <th>Modification</th>
     </tr>
     @foreach (OnilneFlightBooking.Entity.FlightEntity flight in Model)
     {
-<tr>
-    <td>@flight.Flight_Id</td>
-    <td>@flight.FlightName</td>
-    <td>@flight.FromLocation</td>
-    <td>@flight.ToLocation</td>
-    <td>@flight.ArrivalTime.ToShortTimeString()</td>
-    <td>@flight.Duration.ToShortTimeString()</td>
-    <td>@flight.TotalSeat</td>
-    <td>@Html.ActionLink("Edit","EditFlight",new { id=flight.Flight_Id }) | @Html.ActionLink("Delete", "DeleteFlight",new { id = flight.Flight_Id })</td>
-</tr>
+        <tr style="text-align:center">
+            <td>@flight.Flight_Id</td>
+            <td>@flight.FlightName</td>
+            <td>@flight.FromLocation</td>
+            <td>@flight.ToLocation</td>
+            <td>@flight.ArrivalTime.ToShortTimeString()</td>
+            <td>@flight.Duration.ToShortTimeString()</td>
+            <td>@flight.TotalSeat</td>
+            <td>@Html.ActionLink("Edit","EditFlight",new { id=flight.Flight_Id }) | @Html.ActionLink("Delete", "DeleteFlight",new { id = flight.Flight_Id })</td>
+        </tr>
     }
 </table>
 

@@ -10,59 +10,60 @@
 {
     <table>
         <tr style="border-spacing:10px">
-            <td>Name</td>
+            <td>@Html.Label("Name")</td>
             <td>
                 @Html.TextBoxFor(model => model.Name,new { @MaxLength = 25 })
-                @Html.ValidationMessageFor(Model => Model.Name, "", new { style = "display:hidden;color:red;" })
+                @Html.ValidationMessageFor(Model => Model.Name, "", new { @class = "required" })
             </td>
         </tr>
         <tr>
-            <td>Mobile Number</td>
+            <td>@Html.Label("Mobile Number")</td>
             <td>
                 @Html.TextBoxFor(model => model.Mobile,new { @MaxLength = 10 })
-                @Html.ValidationMessageFor(Model => Model.Mobile, "", new { style = "display:hidden;color:red" })
+                @Html.ValidationMessageFor(Model => Model.Mobile, "",  new { @class = "required" })
             </td>
         </tr>
         <tr>
-            <td>Date of Birth</td>
+            <td>@Html.Label("Date of Birth")</td>
             <td>
                 @Html.TextBoxFor(model => model.Dob)
-                @Html.ValidationMessageFor(Model => Model.Dob, "", new { style = "display:hidden;color:red" })
+                @Html.ValidationMessageFor(Model => Model.Dob, "",  new { @class = "required" })
             </td>
         </tr>
         <tr>
-            <td>Mail Address</td>
+            <td>@Html.Label("Mail Address")</td>
             <td>
                 @Html.TextBoxFor(model => model.Mail)
-                @Html.ValidationMessageFor(model => model.Mail, "", new { style = "display:hidden;color:red" })
+                @Html.ValidationMessageFor(model => model.Mail, "",  new { @class = "required" })
             </td>
 
         </tr>
         <tr>
-            <td>Gender</td>
+            <td>@Html.Label("Gender")</td>
             <td>
                 @Html.RadioButtonFor(model => model.Sex, "male")Male
                 @Html.RadioButtonFor(model => model.Sex, "female")Female
-                @Html.ValidationMessageFor(Model => Model.Sex, "", new { style = "display:hidden;color:red" })
+                @Html.ValidationMessageFor(Model => Model.Sex, "",  new { @class = "required" })
             </td>
         </tr>
         <tr>
-            <td>User Address</td>
+            <td>@Html.Label("User Address")</td>
             <td>@Html.TextBoxFor(model => model.UserAddress,new { @MaxLength = 50 })
-                @Html.ValidationMessageFor(model=>model.UserAddress,"", new { style = "display:hidden;color:red" })</td>
+                @Html.ValidationMessageFor(model=>model.UserAddress,"", new { @class = "required" })
+            </td>
         </tr>
         <tr>
-            <td>Password</td>
+            <td>@Html.Label("Password")</td>
             <td>
                 @Html.TextBoxFor(model => model.Password,new { @MinLength = 8,@MaxLength = 12 })
-                @Html.ValidationMessageFor(Model => Model.Password, "", new { style = "display:hidden;color:red" })
+                @Html.ValidationMessageFor(Model => Model.Password, "",  new { @class = "required" })
             </td>
         </tr>
         <tr>
-            <td>Conform Password</td>
+            <td>@Html.Label("Conform Password")</td>
             <td>
                 @Html.TextBoxFor(model => model.ConfirmPassword,new { @MinLength = 8,@MaxLength = 12 })
-                @Html.ValidationMessageFor(Model => Model.ConfirmPassword, "", new { style = "display:hidden;color:red" })
+                @Html.ValidationMessageFor(Model => Model.ConfirmPassword, "", new { @class = "required" })
             </td>
         </tr>
         <tr>

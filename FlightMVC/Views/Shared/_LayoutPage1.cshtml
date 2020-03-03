@@ -4,10 +4,11 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/Content/OnlineFlightBookingStyle.css" />
 </head>
 <body>
-    <h2>ONLINE FLIGHT BOOKING</h2>
-    <div>
+    <h1>ONLINE FLIGHT BOOKING</h1>
+    <div class="menu">
         @Html.ActionLink("SignUp", "SignUp", "User")
         @Html.ActionLink("SignIn", "SignIn", "User")
         @RenderBody()

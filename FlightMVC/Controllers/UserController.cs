@@ -10,10 +10,6 @@ namespace FlightMVC.Controllers
     [HandleError]
     public class UserController : Controller
     {
-        public ActionResult Index()
-        {
-            return View();
-        }
         [HttpGet]
         public ActionResult SignUp()
         {
@@ -35,9 +31,9 @@ namespace FlightMVC.Controllers
                 user.UserAddress = signUp.UserAddress;
                 user.Password = signUp.Password;
                 UserRepository.RegisterUser(user);
+                TempData["message"] = "registered successfull..";
                 return RedirectToAction("SignIn");
             }
-            TempData["message"] = "registered successfull..";
             return View();
         }
         [HttpGet]
@@ -57,7 +53,7 @@ namespace FlightMVC.Controllers
                 string role= UserRepository.ValidateLogin(user);
                 if (role =="admin" )
                 {
-                    TempData["message"] = " Admin Login successfull";
+                    TempData["message"]= "Admin Login successfull";
                     return RedirectToAction("DisplayFlight","Flight");
                 }
                 else if (role =="user")

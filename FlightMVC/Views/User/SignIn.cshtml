@@ -10,11 +10,11 @@
 {
     <table>
         <tr>
-            <td>Mobile Number</td>
+            <td>@Html.Label("Mobile Number")</td>
             <td>@Html.TextBoxFor(model => model.Mobile, new { @MaxLength = 10 })</td>
         </tr>
         <tr>
-            <td>Password</td>
+            <td>@Html.Label("Password")</td>
             <td>@Html.TextBoxFor(model => model.Password)</td>
         </tr>
     </table>

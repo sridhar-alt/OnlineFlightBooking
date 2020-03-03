@@ -34,17 +34,5 @@ namespace OnlineFlightbooking.DAL
             }
         }
 
-        //public static DataTable ViewFlightDetails()
-        //{
-        //    string connectionString = ConfigurationManager.ConnectionStrings["DBConnection"].ConnectionString;
-        //    using (SqlConnection sqlConnection = new SqlConnection(connectionString))
-        //    {
-        //        sqlConnection.Open();
-        //        SqlDataAdapter sqlDataAdapter = new SqlDataAdapter("select * from flightdb", sqlConnection);
-        //        DataTable dataTable = new DataTable();
-        //        sqlDataAdapter.Fill(dataTable);
-        //        return dataTable;
-        //    }
-        //}
     }
 }

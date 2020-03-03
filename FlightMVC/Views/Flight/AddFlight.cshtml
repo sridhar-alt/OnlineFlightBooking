@@ -10,49 +10,53 @@
 {
     <table>
         <tr style="border-spacing:10px">
-            <td>FlightName</td>
+            <td>@Html.Label("FlightName")</td>
             <td>
                 @Html.TextBoxFor(model => model.FlightName, new { @MaxLength = 25 })
-                @Html.ValidationMessageFor(Model => Model.FlightName, "", new { style = "display:hidden;color:red;" })
+                @Html.ValidationMessageFor(Model => Model.FlightName, "", new { @class = "required" })
             </td>
         </tr>
         <tr>
-            <td>From Location<td>
+            <td>@Html.Label("From Location")</td>
             <td>
                 @Html.TextBoxFor(model => model.FromLocation, new { @MaxLength = 10 })
-                @Html.ValidationMessageFor(Model => Model.FromLocation, "", new { style = "display:hidden;color:red" })
+                @Html.ValidationMessageFor(Model => Model.FromLocation, "", new { @class = "required" })
             </td>
         </tr>
         <tr>
-            <td>ToLocation</td>
+            <td>@Html.Label("ToLocation")</td>
             <td>
                 @Html.TextBoxFor(model => model.ToLocation)
-                @Html.ValidationMessageFor(Model => Model.ToLocation, "", new { style = "display:hidden;color:red" })
+                @Html.ValidationMessageFor(Model => Model.ToLocation, "", new { @class = "required" })
             </td>
         </tr>
         <tr>
-            <td>ArrivalTime</td>
+            <td>@Html.Label("ArrivalTime")</td>
             <td>
                 @Html.TextBoxFor(model => model.ArrivalTime)
+                @Html.ValidationMessageFor(Model => Model.ArrivalTime, "", new { @class = "required" })
             </td>
         </tr>
         <tr>
-            <td>Duration</td>
+            <td>@Html.Label("Duration")</td>
             <td>
                 @Html.TextBoxFor(model => model.Duration)
+                @Html.ValidationMessageFor(Model => Model.Duration, "", new { @class = "required" })
             </td>
         </tr>
         <tr>
-            <td>TotalSeat</td>
+            <td>@Html.Label("TotalSeat")</td>
             <td>
                 @Html.TextBoxFor(model => model.TotalSeat, new { @MaxLength = 50 })
+                @Html.ValidationMessageFor(Model => Model.TotalSeat, "", new { @class = "required" })
             </td>
         </tr>
         <tr>
             <td>
-            <input type="submit" value="Register" />
+                <input type="submit" value="Register" />
             </td>
         </tr>
     </table>
+    @Html.ActionLink("Go back to DisplayFlight", "DisplayFlight", "Flight")
 }
 

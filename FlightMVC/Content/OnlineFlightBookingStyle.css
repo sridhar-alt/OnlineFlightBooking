@@ -1,0 +1,25 @@
+﻿h1{
+    text-align:center;
+    background-color:antiquewhite;
+    text-decoration-style:solid;
+    padding:10px;
+    color:black;
+}
+.menu {
+    text-align: center;
+    padding: 20px;
+    text-decoration: none;
+    
+}
+table {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+}
+h3{
+    color:lightgreen;
+}
+.required {
+    display:inline;
+    color: red;
+}

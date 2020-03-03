@@ -8,7 +8,7 @@
     <ProjectGuid>{3C8205DB-FD79-4F1E-9BC2-5094A923339E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>OnlineFlightbooking.DIL</RootNamespace>
+    <RootNamespace>OnlineFlightbooking.DiL</RootNamespace>
     <AssemblyName>OnlineFlightbooking.DIL</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>

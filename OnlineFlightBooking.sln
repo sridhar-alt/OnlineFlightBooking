@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineFlightBooking", "FlightMVC\OnlineFlightBooking.csproj", "{C0FB2A36-CDE2-4DB3-820E-CD31C8038F51}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineFlightbooking.DAL", "OnlineFlightbooking.DIL\OnlineFlightbooking.DAL.csproj", "{3C8205DB-FD79-4F1E-9BC2-5094A923339E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineFlightBooking.DAL", "OnlineFlightbooking.DIL\OnlineFlightBooking.DAL.csproj", "{3C8205DB-FD79-4F1E-9BC2-5094A923339E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnilneFlightBooking.Entity", "OnilneFlightBooking.Entity\OnilneFlightBooking.Entity.csproj", "{E9C792A9-61C2-4B5D-8F85-9EE9BDEA9BAF}"
 EndProject
