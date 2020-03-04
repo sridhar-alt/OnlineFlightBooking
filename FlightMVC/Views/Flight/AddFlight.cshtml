@@ -33,14 +33,14 @@
         <tr>
             <td>@Html.Label("ArrivalTime")</td>
             <td>
-                @Html.TextBoxFor(model => model.ArrivalTime)
+                @Html.TextBoxFor(model => model.ArrivalTime,new {@type="datetime-local"})
                 @Html.ValidationMessageFor(Model => Model.ArrivalTime, "", new { @class = "required" })
             </td>
         </tr>
         <tr>
             <td>@Html.Label("Duration")</td>
             <td>
-                @Html.TextBoxFor(model => model.Duration)
+                @Html.TextBoxFor(model => model.Duration,new { @type="time"})
                 @Html.ValidationMessageFor(Model => Model.Duration, "", new { @class = "required" })
             </td>
         </tr>

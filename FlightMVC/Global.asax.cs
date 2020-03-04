@@ -1,3 +1,4 @@
+using FlightMVC.Models;
 using System.Web.Mvc;
 using System.Web.Routing;
 
@@ -9,6 +10,7 @@ namespace FlightMVC
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            MapConfig.RegisterMap();
         }
     }
 }

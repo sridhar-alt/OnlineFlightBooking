@@ -25,14 +25,7 @@ namespace FlightMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                FlightEntity flight = new FlightEntity();
-                flight.Flight_Id = add.Flight_Id;
-                flight.FlightName = add.FlightName;
-                flight.FromLocation = add.FromLocation;
-                flight.ArrivalTime = add.ArrivalTime;
-                flight.Duration = add.Duration;
-                flight.ToLocation = add.ToLocation;
-                flight.TotalSeat = add.TotalSeat;
+                var flight = AutoMapper.Mapper.Map<FlightModel, FlightEntity>(add);
                 FlightRepository.AddFlight(flight);
                 TempData["message"] = "Flight added successfully";
                 return RedirectToAction("Displayflight");
@@ -50,14 +43,7 @@ namespace FlightMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                FlightEntity flight = new FlightEntity();
-                flight.Flight_Id = edit.Flight_Id;
-                flight.FlightName = edit.FlightName;
-                flight.FromLocation = edit.FromLocation;
-                flight.ArrivalTime = edit.ArrivalTime;
-                flight.Duration = edit.Duration;
-                flight.ToLocation = edit.ToLocation;
-                flight.TotalSeat = edit.TotalSeat;
+                var flight=AutoMapper.Mapper.Map<FlightModel, FlightEntity>(edit);
                 FlightRepository.UpdateFlight(flight);
                 TempData["message"] = "Flight Updated successfully";
                 return RedirectToAction("Displayflight");
@@ -73,8 +59,7 @@ namespace FlightMVC.Controllers
         [HttpPost]
         public ActionResult DeleteFlight(FlightModel delete)
         {
-            FlightEntity flight = new FlightEntity();
-            flight.Flight_Id=delete.Flight_Id;
+            var flight = AutoMapper.Mapper.Map<FlightModel, FlightEntity>(delete);
             FlightRepository.DeleteFlight(flight);
             TempData["message"] = "Flight deleted successfully";
             return RedirectToAction("Displayflight");

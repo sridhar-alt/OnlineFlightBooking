@@ -25,7 +25,7 @@
             <td>@flight.FlightName</td>
             <td>@flight.FromLocation</td>
             <td>@flight.ToLocation</td>
-            <td>@flight.ArrivalTime.ToShortTimeString()</td>
+            <td>@flight.ArrivalTime</td>
             <td>@flight.Duration.ToShortTimeString()</td>
             <td>@flight.TotalSeat</td>
             <td>@Html.ActionLink("Edit","EditFlight",new { id=flight.Flight_Id }) | @Html.ActionLink("Delete", "DeleteFlight",new { id = flight.Flight_Id })</td>

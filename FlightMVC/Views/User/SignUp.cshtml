@@ -26,8 +26,8 @@
         <tr>
             <td>@Html.Label("Date of Birth")</td>
             <td>
-                @Html.TextBoxFor(model => model.Dob)
-                @Html.ValidationMessageFor(Model => Model.Dob, "",  new { @class = "required" })
+                @Html.TextBoxFor(model => model.Dob,new { @type="date"})
+                @Html.ValidationMessageFor(Model => Model.Dob, "",  new { @class = "required"})
             </td>
         </tr>
         <tr>

@@ -21,15 +21,7 @@ namespace FlightMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                UserEntity user = new UserEntity();
-                user.Name = signUp.Name;
-                user.Dob = signUp.Dob;
-                user.Mobile = signUp.Mobile;
-                user.Sex = signUp.Sex;
-                user.Role = "user";
-                user.Mail = signUp.Mail;
-                user.UserAddress = signUp.UserAddress;
-                user.Password = signUp.Password;
+                var user = AutoMapper.Mapper.Map<SignUpModel, UserEntity>(signUp);
                 UserRepository.RegisterUser(user);
                 TempData["message"] = "registered successfull..";
                 return RedirectToAction("SignIn");
@@ -47,9 +39,7 @@ namespace FlightMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                UserEntity user = new UserEntity();
-                user.Mobile = signIn.Mobile;
-                user.Password = signIn.Password;
+                var user= AutoMapper.Mapper.Map<SignInModel, UserEntity>(signIn);
                 string role= UserRepository.ValidateLogin(user);
                 if (role =="admin" )
                 {
