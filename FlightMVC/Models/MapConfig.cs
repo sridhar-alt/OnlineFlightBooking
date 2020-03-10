@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace FlightMVC.Models
+namespace OnlineFlightBooking.Models
 {
     public class MapConfig
     {
@@ -12,9 +12,9 @@ namespace FlightMVC.Models
         {
             AutoMapper.Mapper.Initialize(config =>
             {
-                config.CreateMap<SignUpModel, UserEntity>();
-                config.CreateMap<SignInModel, UserEntity>();
-                config.CreateMap<FlightModel, FlightEntity>();
+                config.CreateMap<SignUpModel, User>();
+                config.CreateMap<SignInModel, User>();
+                config.CreateMap<FlightModel, Flight>();
             });
         }
     }

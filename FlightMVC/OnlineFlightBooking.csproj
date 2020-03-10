@@ -12,8 +12,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FlightMVC</RootNamespace>
-    <AssemblyName>FlightMVC</AssemblyName>
+    <RootNamespace>OnlineFlightBooking</RootNamespace>
+    <AssemblyName>OnlineFlightBooking</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
@@ -161,6 +161,7 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="CustomeError.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
@@ -192,9 +193,6 @@
     <Content Include="Scripts\jquery-3.4.1.min.map" />
     <Content Include="Views\Shared\_LayoutPage1.cshtml" />
     <Content Include="Views\Home\Main.cshtml" />
-    <Content Include="Views\User\UserDisplay.cshtml" />
-    <Content Include="Views\Flight\Displayflight.cshtml" />
-    <Content Include="Views\Shared\_DisplayFlight.cshtml" />
     <Content Include="Views\Error\ErrorFound.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\CustomError.cshtml" />
@@ -203,6 +201,8 @@
     <Content Include="Views\Flight\AddFlight.cshtml" />
     <Content Include="Views\Flight\DeleteFlight.cshtml" />
     <Content Include="Views\Flight\EditFlight.cshtml" />
+    <Content Include="Views\Flight\Displayflight.cshtml" />
+    <Content Include="Views\User\UserDisplay.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -217,6 +217,10 @@
     <ProjectReference Include="..\OnilneFlightBooking.Entity\OnilneFlightBooking.Entity.csproj">
       <Project>{e9c792a9-61c2-4b5d-8f85-9ee9bdea9baf}</Project>
       <Name>OnilneFlightBooking.Entity</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\OnlineFlightBooking.BL\OnlineFlightBooking.BL.csproj">
+      <Project>{BA697D93-0C49-4949-BE20-DDD576BF7396}</Project>
+      <Name>OnlineFlightBooking.BL</Name>
     </ProjectReference>
     <ProjectReference Include="..\OnlineFlightbooking.DIL\OnlineFlightBooking.DAL.csproj">
       <Project>{3c8205db-fd79-4f1e-9bc2-5094a923339e}</Project>

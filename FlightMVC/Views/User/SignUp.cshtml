@@ -1,11 +1,10 @@
-﻿@model FlightMVC.Models.SignUpModel
-
+﻿@model OnlineFlightBooking.Models.SignUpModel
 @{
     ViewBag.Title = "SignUp";
 }
-
 <h2>SignUp</h2>
 <h2>@ViewBag.message</h2>
+
 @using (Html.BeginForm("SignUp", "User", FormMethod.Post))
 {
     <table>
@@ -68,6 +67,7 @@
         </tr>
         <tr>
             <td>
+                @Html.AntiForgeryToken()
                 <input type="submit" value="Register" />
             </td>
         </tr>

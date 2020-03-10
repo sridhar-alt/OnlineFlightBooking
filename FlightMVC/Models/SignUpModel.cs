@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace FlightMVC.Models
+namespace OnlineFlightBooking.Models
 {
     public class SignUpModel
     {

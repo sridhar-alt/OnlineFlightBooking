@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace FlightMVC.Controllers
+namespace OnlineFlightBooking.Controllers
 {
     public class ErrorController : Controller
     {

@@ -1,18 +1,18 @@
-﻿using FlightMVC.Models;
+﻿using OnlineFlightBooking.Models;
 using OnilneFlightBooking.Entity;
-using OnlineFlightbooking.DAL;
-using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using OnlineFlightBooking.BL;
 
-namespace FlightMVC.Controllers
+namespace OnlineFlightBooking.Controllers
 {
+    //[Authorize(Roles ="admin")]
     public class FlightController : Controller
     {
         // GET: Flight
         public ActionResult Displayflight()
         {
-            IEnumerable<FlightEntity> flights = FlightRepository.DisplayFlight();
+            IEnumerable<Flight> flights = FlightBL.DisplayFlight();
             return View(flights);
         }
         [HttpGet]
@@ -25,8 +25,8 @@ namespace FlightMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var flight = AutoMapper.Mapper.Map<FlightModel, FlightEntity>(add);
-                FlightRepository.AddFlight(flight);
+                var flight = AutoMapper.Mapper.Map<FlightModel, Flight>(add);
+                FlightBL.AddFlight(flight);
                 TempData["message"] = "Flight added successfully";
                 return RedirectToAction("Displayflight");
             }
@@ -35,7 +35,7 @@ namespace FlightMVC.Controllers
         [HttpGet]
         public ActionResult EditFlight(int Id)
         {
-            FlightEntity flight = FlightRepository.GetDetails(Id);
+            Flight flight = FlightBL.GetDetails(Id);
             return View(flight);
         }
         [HttpPost]
@@ -43,8 +43,8 @@ namespace FlightMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var flight=AutoMapper.Mapper.Map<FlightModel, FlightEntity>(edit);
-                FlightRepository.UpdateFlight(flight);
+                var flight=AutoMapper.Mapper.Map<FlightModel, Flight>(edit);
+                FlightBL.UpdateFlight(flight);
                 TempData["message"] = "Flight Updated successfully";
                 return RedirectToAction("Displayflight");
             }
@@ -53,14 +53,14 @@ namespace FlightMVC.Controllers
         [HttpGet]
         public ActionResult DeleteFlight(int Id)
         {
-            FlightEntity flight = FlightRepository.GetDetails(Id);
+            Flight flight = FlightBL.GetDetails(Id);
             return View(flight);
         }
         [HttpPost]
         public ActionResult DeleteFlight(FlightModel delete)
         {
-            var flight = AutoMapper.Mapper.Map<FlightModel, FlightEntity>(delete);
-            FlightRepository.DeleteFlight(flight);
+            var flight = AutoMapper.Mapper.Map<FlightModel, Flight>(delete);
+            FlightBL.DeleteFlight(flight);
             TempData["message"] = "Flight deleted successfully";
             return RedirectToAction("Displayflight");
         }

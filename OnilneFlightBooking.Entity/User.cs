@@ -9,7 +9,7 @@ namespace OnilneFlightBooking.Entity
         male,
         female
     }
-    public class UserEntity
+    public class User
     {
         public string Name { get; set; }
         [Key]
@@ -20,7 +20,7 @@ namespace OnilneFlightBooking.Entity
         public string UserAddress { get; set; }
         public string Password { get; set; }
         public string Role { get; set; }
-        public UserEntity()
+        public User()
         { }
     }
     

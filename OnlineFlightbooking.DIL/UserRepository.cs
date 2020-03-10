@@ -1,29 +1,20 @@
 ﻿using OnilneFlightBooking.Entity;
-using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data.SqlClient;
 using System.Linq;
 
 namespace OnlineFlightbooking.DAL
 {
     public class UserRepository
     {
-        public static List<UserEntity>RegisterUser()
-        {
-            UserContext userContext = new UserContext();
-            return userContext.UserEntity.ToList();
-        }
-        public static void RegisterUser(UserEntity user)
+        public static void RegisterUser(User user)
         {
             UserContext userContext = new UserContext();
             userContext.UserEntity.Add(user);
             userContext.SaveChanges();
         }
-        public static string ValidateLogin(UserEntity user)
+        public static string ValidateLogin(User user)
         {
             UserContext userContext = new UserContext();
-            UserEntity userDb = userContext.UserEntity.Where(model => model.Mobile == user.Mobile).Where(model=>model.Password==user.Password).SingleOrDefault();
+            User userDb = userContext.UserEntity.Where(model => model.Mobile == user.Mobile).Where(model=>model.Password==user.Password).SingleOrDefault();
             if (userDb!=null)
             {
                 return userDb.Role;

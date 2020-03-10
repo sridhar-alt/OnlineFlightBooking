@@ -9,7 +9,7 @@ namespace OnlineFlightbooking.DAL
         {
 
         }
-        public DbSet<UserEntity> UserEntity { get; set; }
-        public DbSet<FlightEntity> FlightEntity { get; set; }
+        public DbSet<User> UserEntity { get; set; }
+        public DbSet<Flight> FlightEntity { get; set; }
     }
 }

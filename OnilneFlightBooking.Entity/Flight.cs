@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace OnilneFlightBooking.Entity
 {
-    public class FlightEntity
+    public class Flight
     {
         [Key]
         [Required]

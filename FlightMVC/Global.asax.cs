@@ -1,8 +1,9 @@
-using FlightMVC.Models;
+using OnlineFlightBooking.App_Start;
+using OnlineFlightBooking.Models;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace FlightMVC
+namespace OnlineFlightBooking
 {
     public class MvcApplication : System.Web.HttpApplication
     {
@@ -11,6 +12,7 @@ namespace FlightMVC
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             MapConfig.RegisterMap();
+            FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
         }
     }
 }

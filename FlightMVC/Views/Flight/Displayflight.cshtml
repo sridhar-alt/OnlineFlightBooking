@@ -1,4 +1,4 @@
-﻿@model IEnumerable<OnilneFlightBooking.Entity.FlightEntity>
+﻿@model IEnumerable<OnilneFlightBooking.Entity.Flight>
 @{
     ViewBag.Title = "Displayflight";
 }
@@ -18,7 +18,7 @@
         <th>TotalSeat</th>
         <th>Modification</th>
     </tr>
-    @foreach (OnilneFlightBooking.Entity.FlightEntity flight in Model)
+    @foreach (OnilneFlightBooking.Entity.Flight flight in Model)
     {
         <tr style="text-align:center">
             <td>@flight.Flight_Id</td>
@@ -28,8 +28,9 @@
             <td>@flight.ArrivalTime</td>
             <td>@flight.Duration.ToShortTimeString()</td>
             <td>@flight.TotalSeat</td>
-            <td>@Html.ActionLink("Edit","EditFlight",new { id=flight.Flight_Id }) | @Html.ActionLink("Delete", "DeleteFlight",new { id = flight.Flight_Id })</td>
+            <td>@Html.ActionLink("Edit", "EditFlight", new { id = flight.Flight_Id }) | @Html.ActionLink("Delete", "DeleteFlight", new { id = flight.Flight_Id })</td>
         </tr>
     }
 </table>
+
 

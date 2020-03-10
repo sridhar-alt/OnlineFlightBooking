@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace FlightMVC
+namespace OnlineFlightBooking
 {
     public class CustomeError :HandleErrorAttribute
     {

@@ -1,11 +1,10 @@
 ﻿using OnilneFlightBooking.Entity;
 using System.Web.Mvc;
-using OnlineFlightbooking.DAL;
+using OnlineFlightBooking.Models;
+using OnlineFlightBooking.BL;
 using System.Collections.Generic;
-using System;
-using FlightMVC.Models;
 
-namespace FlightMVC.Controllers
+namespace OnlineFlightBooking.Controllers
 {
     [HandleError]
     public class UserController : Controller
@@ -13,16 +12,16 @@ namespace FlightMVC.Controllers
         [HttpGet]
         public ActionResult SignUp()
         {
-            IEnumerable<UserEntity> con = UserRepository.RegisterUser();
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult SignUp(SignUpModel signUp)
         {
             if (ModelState.IsValid)
             {
-                var user = AutoMapper.Mapper.Map<SignUpModel, UserEntity>(signUp);
-                UserRepository.RegisterUser(user);
+                var user = AutoMapper.Mapper.Map<SignUpModel, User>(signUp);
+                UserBL.RegisterUser(user);
                 TempData["message"] = "registered successfull..";
                 return RedirectToAction("SignIn");
             }
@@ -39,17 +38,17 @@ namespace FlightMVC.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user= AutoMapper.Mapper.Map<SignInModel, UserEntity>(signIn);
-                string role= UserRepository.ValidateLogin(user);
+                var user= AutoMapper.Mapper.Map<SignInModel, User>(signIn);
+                string role= UserBL.ValidateLogin(user);
                 if (role =="admin" )
                 {
                     TempData["message"]= "Admin Login successfull";
-                    return RedirectToAction("DisplayFlight","Flight");
+                    return RedirectToAction("Displayflight","Flight");
                 }
-                else if (role =="user")
+                else if (role =="User")
                 {
                     TempData["message"] = "user Login successfull";
-                    return RedirectToAction("UserDisplay");
+                    return RedirectToAction("UserDisplay","User");
                 }
                 TempData["message"] = "Incorrect mobile number or password";
             }
@@ -58,7 +57,8 @@ namespace FlightMVC.Controllers
         [HttpGet]
         public ActionResult UserDisplay()
         {
-            return View();
+            IEnumerable<Flight> flights = FlightBL.DisplayFlight();
+            return View(flights);
         }
     }
 }

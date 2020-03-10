@@ -1,5 +1,4 @@
 ﻿using OnilneFlightBooking.Entity;
-using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -9,41 +8,41 @@ namespace OnlineFlightbooking.DAL
 {
     public class FlightRepository
     {
-        public static List<FlightEntity> List()
+        public static List<Flight> FlightList()
         {
             UserContext userContext = new UserContext();
             return userContext.FlightEntity.ToList();
         }
-        public static IEnumerable<FlightEntity> DisplayFlight()
+        public static IEnumerable<Flight> DisplayFlight()
         {
             UserContext userContext = new UserContext();
-            List<FlightEntity> flightDetails = userContext.FlightEntity.ToList();
+            List<Flight> flightDetails = userContext.FlightEntity.ToList();
             return flightDetails;
         }
-        public static void AddFlight(FlightEntity flight)
+        public static void AddFlight(Flight flight)
         {
             UserContext userContext = new UserContext();
             userContext.FlightEntity.Add(flight);
             userContext.SaveChanges();
         }
-        public static FlightEntity GetDetails(int flightId)
+        public static Flight GetDetails(int flightId)
         {
             UserContext userContext = new UserContext();
-            FlightEntity flight = userContext.FlightEntity.Where(model => model.Flight_Id == flightId).SingleOrDefault();
+            Flight flight = userContext.FlightEntity.Where(model => model.Flight_Id == flightId).SingleOrDefault();
             return flight;
         }
 
-        public static void UpdateFlight(FlightEntity flight)
+        public static void UpdateFlight(Flight flight)
         {
             UserContext userContext = new UserContext();
             userContext.Entry(flight).State = EntityState.Modified;
             int change = userContext.SaveChanges();
         }
 
-        public static void DeleteFlight(FlightEntity flight)
+        public static void DeleteFlight(Flight flight)
         {
             UserContext userContext = new UserContext();
-            FlightEntity flightEntity = userContext.FlightEntity.Where(model => model.Flight_Id == flight.Flight_Id).SingleOrDefault();
+            Flight flightEntity = userContext.FlightEntity.Where(model => model.Flight_Id == flight.Flight_Id).SingleOrDefault();
             userContext.FlightEntity.Attach(flightEntity);
             userContext.FlightEntity.Remove(flightEntity);
             userContext.SaveChanges();
