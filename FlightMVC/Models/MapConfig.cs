@@ -15,6 +15,7 @@ namespace OnlineFlightBooking.Models
                 config.CreateMap<SignUpModel, User>();
                 config.CreateMap<SignInModel, User>();
                 config.CreateMap<FlightModel, Flight>();
+                config.CreateMap<FlightTravelClassModel, FlightTravelClass>();
             });
         }
     }

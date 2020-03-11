@@ -1,0 +1,44 @@
+﻿@model OnlineFlightBooking.Models.FlightTravelClassModel
+
+@{
+    ViewBag.Title = "CreateClass";
+}
+
+<h2>FlightTravelClass</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <table>
+        @Html.HiddenFor(model => model.Flight_Id)
+        <tr>
+            <td> @Html.LabelFor(model => model.Class_Id)</td>
+            <td>
+                @Html.DropDownList("Class_Id")
+                @Html.ValidationMessageFor(model => model.Class_Id)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.SeatCount)</td>
+            <td>
+                @Html.EditorFor(model => model.SeatCount)
+                @Html.ValidationMessageFor(model => model.SeatCount, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.LabelFor(model => model.SeatCost)
+            </td>
+            <td>
+                @Html.EditorFor(model => model.SeatCost)
+                @Html.ValidationMessageFor(model => model.SeatCost, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+    </table>
+    <input type="submit" value="Create" />
+    @Html.ActionLink("Back to List", "DisplayClass")
+}
+
+
+

@@ -28,7 +28,8 @@ namespace OnlineFlightBooking.Controllers
                 var flight = AutoMapper.Mapper.Map<FlightModel, Flight>(add);
                 FlightBL.AddFlight(flight);
                 TempData["message"] = "Flight added successfully";
-                return RedirectToAction("Displayflight");
+                TempData["FlightId"] = flight.Flight_Id;
+                return RedirectToAction("CreateClass","FlightTravelClasses");
             }
             return View();
         }
@@ -46,7 +47,8 @@ namespace OnlineFlightBooking.Controllers
                 var flight=AutoMapper.Mapper.Map<FlightModel, Flight>(edit);
                 FlightBL.UpdateFlight(flight);
                 TempData["message"] = "Flight Updated successfully";
-                return RedirectToAction("Displayflight");
+                TempData["FlightId"] = flight.Flight_Id;
+                return RedirectToAction("DisplayClass", "FlightTravelClasses");
             }
             return View();
         }
