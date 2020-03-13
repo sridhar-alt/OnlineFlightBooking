@@ -1,4 +1,4 @@
-﻿@model OnilneFlightBooking.Entity.Flight
+﻿@model OnlineFlightBooking.Models.FlightModel
 
 @{
     ViewBag.Title = "DeleteFlight";
@@ -8,11 +8,11 @@
 <h3>Are you sure want to delete this?</h3>
 @using (Html.BeginForm("DeleteFlight", "Flight"))
 {
-    @Html.HiddenFor(model => model.Flight_Id)
+    @Html.HiddenFor(model => model.FlightId)
     <table border="1" cellspacing="0">
         <tr style="border-spacing:10px">
-            <td>@Html.LabelFor(model => model.Flight_Id)</td>
-            <td>@Html.ValueFor(model => model.Flight_Id)</td>
+            <td>@Html.LabelFor(model => model.FlightId)</td>
+            <td>@Html.ValueFor(model => model.FlightId)</td>
         </tr>
         <tr>
             <td>@Html.LabelFor(model => model.FlightName)</td>

@@ -11,7 +11,11 @@ namespace OnlineFlightbooking.DAL
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<User>().MapToStoredProcedures();
+            modelBuilder.Entity<User>()
+                .MapToStoredProcedures(p => p.Insert(sp => sp.HasName("sp_InsertUser"))
+                .Update(sp => sp.HasName("sp_UpdateUser"))
+                .Delete(sp => sp.HasName("sp_DeleteUser"))
+                );
         }
         public DbSet<User> UserEntity { get; set; }
         public DbSet<Flight> FlightEntity { get; set; }

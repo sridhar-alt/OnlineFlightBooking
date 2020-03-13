@@ -1,10 +1,7 @@
 ﻿using OnilneFlightBooking.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+using OnlineFlightBooking.Models;
 
-namespace OnlineFlightBooking.Models
+namespace OnlineFlightBooking.App_Start
 {
     public class MapConfig
     {

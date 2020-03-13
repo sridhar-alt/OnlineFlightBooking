@@ -4,10 +4,10 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 using OnilneFlightBooking.Entity;
 using OnlineFlightbooking.DAL;
+using OnlineFlightBooking.BL;
 using OnlineFlightBooking.Models;
 
 namespace OnlineFlightBooking.Controllers
@@ -20,15 +20,16 @@ namespace OnlineFlightBooking.Controllers
         public ActionResult DisplayClass()
         {
             int flightId = Convert.ToInt32(TempData["FlightId"]);
-            var flightTravelClasses = db.FlightTravelClasses.Where(x => x.Flight_Id == flightId).Include(f => f.Flight).Include(f => f.TravelClass);
-            return View(flightTravelClasses.ToList());
+            IEnumerable<FlightTravelClass> TravelClass = FlightBL.DisplayClass(flightId);
+            return View(TravelClass);
         }
-        // GET: FlightTravelClasses/CreateClass
+        // GET: FlightTravelClasses/GetClass
+        [HttpGet]
         public ActionResult CreateClass()
         {
             FlightTravelClass flightTravelClass = new FlightTravelClass();
-            flightTravelClass.Flight_Id = Convert.ToInt32(TempData["FlightId"]);
-            ViewBag.Class_Id = new SelectList(db.TravelClasses, "Class_Id", "ClassName");
+            flightTravelClass.FlightId = Convert.ToInt32(TempData["FlightId"]);
+            ViewBag.ClassId = new SelectList(FlightBL.GetClass(),"ClassId", "ClassName");
             FlightTravelClassModel flightTravelClassModel= AutoMapper.Mapper.Map<FlightTravelClass, FlightTravelClassModel>(flightTravelClass);
             return View(flightTravelClassModel);
         }
@@ -39,29 +40,19 @@ namespace OnlineFlightBooking.Controllers
             if (ModelState.IsValid)
             {
                 FlightTravelClass create = AutoMapper.Mapper.Map<FlightTravelClassModel,FlightTravelClass>(flightTravelClassModel);
-                db.FlightTravelClasses.Add(create);
-                db.SaveChanges();
-                TempData["FlightId"] = create.Flight_Id;
-                return RedirectToAction("Displayflight","Flight");
+                FlightBL.CreateClass(create);
+                TempData["FlightId"] = create.FlightId;
+                return RedirectToAction("DisplayFlight","Flight");
             }
-            ViewBag.Class_Id = new SelectList(db.TravelClasses, "Class_Id", "ClassName", flightTravelClassModel.Class_Id);
+            ViewBag.Class_Id = new SelectList(FlightBL.GetClass(), "ClassId", "ClassName", flightTravelClassModel.ClassId);
             return View(flightTravelClassModel);
         }
 
         // GET: FlightTravelClasses/Edit/5
-        public ActionResult EditClass(int? id)
+        public ActionResult EditClass(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            FlightTravelClass flightTravelClass = db.FlightTravelClasses.Find(id);
-            if (flightTravelClass == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.Flight_Id = new SelectList(db.FlightEntity, "Flight_Id", "FlightName", flightTravelClass.Flight_Id);
-            ViewBag.Class_Id = new SelectList(db.TravelClasses, "Class_Id", "ClassName", flightTravelClass.Class_Id);
+            FlightTravelClass flightTravelClass =FlightBL.GetDetailsClass(id);
+            ViewBag.ClassId = new SelectList(FlightBL.GetClass(), "ClassId", "ClassName");
             FlightTravelClassModel flightTravelClassModel = AutoMapper.Mapper.Map<FlightTravelClass, FlightTravelClassModel>(flightTravelClass);
             return View(flightTravelClassModel);
         }
@@ -73,10 +64,10 @@ namespace OnlineFlightBooking.Controllers
             {
                 db.Entry(flightTravelClass).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("DisplayClass");
+                return RedirectToAction("DisplayFlight","Flight");
             }
-            ViewBag.Flight_Id = new SelectList(db.FlightEntity, "Flight_Id", "FlightName", flightTravelClass.Flight_Id);
-            ViewBag.Class_Id = new SelectList(db.TravelClasses, "Class_Id", "ClassName", flightTravelClass.Class_Id);
+            ViewBag.Flight_Id = new SelectList(db.FlightEntity, "FlightId", "FlightName", flightTravelClass.FlightId);
+            ViewBag.Class_Id = new SelectList(db.TravelClasses, "ClassId", "ClassName", flightTravelClass.ClassId);
             return View(flightTravelClass);
         }
 

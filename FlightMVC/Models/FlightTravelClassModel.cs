@@ -9,11 +9,11 @@ namespace OnlineFlightBooking.Models
 {
     public class FlightTravelClassModel
     {
-        public int FlightTravelClass_Id { get; set; }
+        public int FlightTravelClassId { get; set; }
         [Required(ErrorMessage = "Flight id required")]
-        public int Flight_Id { get; set; }
+        public int FlightId { get; set; }
         [Required(ErrorMessage = "class id required")]
-        public int Class_Id { get; set; }
+        public int ClassId { get; set; }
         [Required(ErrorMessage = "seat count required")]
         public int SeatCount { get; set; }
         [Required(ErrorMessage = "seat cost required")]

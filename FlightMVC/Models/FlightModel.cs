@@ -9,7 +9,7 @@ namespace OnlineFlightBooking.Models
     public class FlightModel
     {
         [Required]
-        public int Flight_Id { get; set; }
+        public int FlightId { get; set; }
         [Required(ErrorMessage = "Name required")]
         [StringLength(30, ErrorMessage = "Name cannot be longer than 30 characters.")]
         [RegularExpression(@"(^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$)", ErrorMessage = "Invalid flightId")]

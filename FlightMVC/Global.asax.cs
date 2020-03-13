@@ -1,5 +1,4 @@
 using OnlineFlightBooking.App_Start;
-using OnlineFlightBooking.Models;
 using System.Web.Mvc;
 using System.Web.Routing;
 

@@ -10,10 +10,16 @@ namespace OnlineFlightBooking.Controllers
     public class FlightController : Controller
     {
         // GET: Flight
-        public ActionResult Displayflight()
+        public ActionResult DisplayFlight()
         {
             IEnumerable<Flight> flights = FlightBL.DisplayFlight();
-            return View(flights);
+            List<FlightModel> flightModels = new List<FlightModel>();
+            foreach(var flight in flights)
+            {
+                FlightModel flightModel = AutoMapper.Mapper.Map<Flight, FlightModel>(flight);
+                flightModels.Add(flightModel);
+            }
+            return View(flightModels);
         }
         [HttpGet]
         public ActionResult AddFlight()
@@ -25,29 +31,30 @@ namespace OnlineFlightBooking.Controllers
         {
             if (ModelState.IsValid)
             {
-                var flight = AutoMapper.Mapper.Map<FlightModel, Flight>(add);
+                Flight flight = AutoMapper.Mapper.Map<FlightModel, Flight>(add);
                 FlightBL.AddFlight(flight);
                 TempData["message"] = "Flight added successfully";
-                TempData["FlightId"] = flight.Flight_Id;
-                return RedirectToAction("CreateClass","FlightTravelClasses");
+                TempData["FlightId"] = flight.FlightId;
+                return RedirectToAction("GetClass", "FlightTravelClasses");
             }
             return View();
         }
         [HttpGet]
         public ActionResult EditFlight(int Id)
         {
-            Flight flight = FlightBL.GetDetails(Id);
-            return View(flight);
+            Flight flight = FlightBL.GetDetails(Id); 
+            FlightModel flightModel = AutoMapper.Mapper.Map<Flight,FlightModel>(flight);
+            return View(flightModel);
         }
         [HttpPost]
         public ActionResult EditFlight(FlightModel edit)
         {
             if (ModelState.IsValid)
             {
-                var flight=AutoMapper.Mapper.Map<FlightModel, Flight>(edit);
+                Flight flight=AutoMapper.Mapper.Map<FlightModel, Flight>(edit);
                 FlightBL.UpdateFlight(flight);
                 TempData["message"] = "Flight Updated successfully";
-                TempData["FlightId"] = flight.Flight_Id;
+                TempData["FlightId"] = flight.FlightId;
                 return RedirectToAction("DisplayClass", "FlightTravelClasses");
             }
             return View();
@@ -56,15 +63,16 @@ namespace OnlineFlightBooking.Controllers
         public ActionResult DeleteFlight(int Id)
         {
             Flight flight = FlightBL.GetDetails(Id);
-            return View(flight);
+            FlightModel flightModel = AutoMapper.Mapper.Map<Flight, FlightModel>(flight);
+            return View(flightModel);
         }
         [HttpPost]
         public ActionResult DeleteFlight(FlightModel delete)
         {
-            var flight = AutoMapper.Mapper.Map<FlightModel, Flight>(delete);
+            Flight flight = AutoMapper.Mapper.Map<FlightModel, Flight>(delete);
             FlightBL.DeleteFlight(flight);
             TempData["message"] = "Flight deleted successfully";
-            return RedirectToAction("Displayflight");
+            return RedirectToAction("DisplayFlight");
         }
     }
 }

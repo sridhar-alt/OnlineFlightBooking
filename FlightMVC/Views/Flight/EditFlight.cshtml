@@ -1,4 +1,4 @@
-﻿@model OnilneFlightBooking.Entity.Flight
+﻿@model OnlineFlightBooking.Models.FlightModel
 
 @{
     ViewBag.Title = "EditFlight";
@@ -7,13 +7,13 @@
 <h2>EditFlight</h2>
 @using (Html.BeginForm("EditFlight", "Flight"))
 {
-    @Html.HiddenFor(model => model.Flight_Id)
+    @Html.HiddenFor(model => model.FlightId)
 <table>
     <tr style="border-spacing:10px">
         <td>@Html.Label("Flight Id")</td>
         <td>
-            @Html.ValueFor(model => model.Flight_Id)
-            @Html.ValidationMessageFor(Model => Model.Flight_Id, "", new { @class = "required" })
+            @Html.ValueFor(model => model.FlightId)
+            @Html.ValidationMessageFor(Model => Model.FlightId, "", new { @class = "required" })
         </td>
     </tr>
     <tr>

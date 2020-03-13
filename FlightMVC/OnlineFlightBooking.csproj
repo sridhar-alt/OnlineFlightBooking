@@ -162,6 +162,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\MapConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\FlightTravelClassesController.cs" />
     <Compile Include="CustomeError.cs" />
@@ -173,7 +174,6 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\FlightModel.cs" />
-    <Compile Include="Models\MapConfig.cs" />
     <Compile Include="Models\SignInModel.cs" />
     <Compile Include="Models\SignUpModel.cs" />
     <Compile Include="Models\FlightTravelClassModel.cs" />
@@ -203,13 +203,13 @@
     <Content Include="Views\Flight\AddFlight.cshtml" />
     <Content Include="Views\Flight\DeleteFlight.cshtml" />
     <Content Include="Views\Flight\EditFlight.cshtml" />
-    <Content Include="Views\Flight\Displayflight.cshtml" />
     <Content Include="Views\User\UserDisplay.cshtml" />
     <Content Include="Views\FlightTravelClasses\CreateClass.cshtml" />
     <Content Include="Views\FlightTravelClasses\DeleteClass.cshtml" />
     <Content Include="Views\FlightTravelClasses\Details.cshtml" />
     <Content Include="Views\FlightTravelClasses\EditClass.cshtml" />
     <Content Include="Views\FlightTravelClasses\DisplayClass.cshtml" />
+    <Content Include="Views\Flight\DisplayFlight.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
