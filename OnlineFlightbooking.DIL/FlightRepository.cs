@@ -33,7 +33,6 @@ namespace OnlineFlightbooking.DAL
                 userContext.SaveChanges();
             }
         }
-
         public static IEnumerable<FlightTravelClass> DisplayClass(int flightId)
         {
 
@@ -43,7 +42,6 @@ namespace OnlineFlightbooking.DAL
                 return TravelClass;
             }
         }
-
         public static void CreateClass(FlightTravelClass create)
         {
             using (UserContext userContext = new UserContext())
@@ -52,8 +50,26 @@ namespace OnlineFlightbooking.DAL
                 userContext.SaveChanges();
             }
         }
+        public static void EditClass(FlightTravelClass flightTravelClass)
+        {
+            using (UserContext userContext = new UserContext())
+            {
+                userContext.Entry(flightTravelClass).State = EntityState.Modified;
+                userContext.SaveChanges();
+            }
+        }
+        public static void DeleteFlightTravelClass(FlightTravelClass deleteClass)
+        {
+            using(UserContext userContext=new UserContext())
+            {
+                FlightTravelClass flightTravelClass = userContext.FlightTravelClasses.Where(model => model.FlightTravelClassId == deleteClass.FlightTravelClassId).SingleOrDefault();
+                userContext.FlightTravelClasses.Attach(flightTravelClass);
+                userContext.FlightTravelClasses.Remove(flightTravelClass);
+                userContext.SaveChanges();
+            }
+        }
 
-        public static IEnumerable<TravelClass> GetClass()
+        public static IEnumerable<TravelClass> GetTravelClass()
         {
             using (UserContext userContext = new UserContext())
             {
@@ -61,15 +77,16 @@ namespace OnlineFlightbooking.DAL
                 return classes;
             }
         }
+
         public static FlightTravelClass GetDetailsClass(int id)
         {
             using (UserContext userContext = new UserContext())
             {
-                FlightTravelClass classes = userContext.FlightTravelClasses.Where(model => model.ClassId == id).SingleOrDefault();
+                FlightTravelClass classes = userContext.FlightTravelClasses.Where(model => model.FlightTravelClassId == id).SingleOrDefault();
                 return classes;
             }
         }
-        public static Flight GetDetails(int flightId)
+        public static Flight GetFlightDetails(int flightId)
         {
             using (UserContext userContext = new UserContext())
             {

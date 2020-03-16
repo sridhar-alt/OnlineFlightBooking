@@ -4,33 +4,36 @@
 }
 <h2>SignUp</h2>
 <h2>@ViewBag.message</h2>
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+
 
 @using (Html.BeginForm("SignUp", "User", FormMethod.Post))
 {
     <table>
         <tr style="border-spacing:10px">
-            <td>@Html.Label("Name")</td>
+            <td>@Html.LabelFor(model => model.Name)</td>
             <td>
                 @Html.TextBoxFor(model => model.Name,new { @MaxLength = 25 })
                 @Html.ValidationMessageFor(Model => Model.Name, "", new { @class = "required" })
             </td>
         </tr>
         <tr>
-            <td>@Html.Label("Mobile Number")</td>
+            <td>@Html.LabelFor(model => model.Mobile)</td>
             <td>
                 @Html.TextBoxFor(model => model.Mobile,new { @MaxLength = 10 })
                 @Html.ValidationMessageFor(Model => Model.Mobile, "",  new { @class = "required" })
             </td>
         </tr>
         <tr>
-            <td>@Html.Label("Date of Birth")</td>
+            <td>@Html.LabelFor(model => model.Dob)</td>
             <td>
                 @Html.TextBoxFor(model => model.Dob,new { @type="date"})
                 @Html.ValidationMessageFor(Model => Model.Dob, "",  new { @class = "required"})
             </td>
         </tr>
         <tr>
-            <td>@Html.Label("Mail Address")</td>
+            <td>@Html.LabelFor(model => model.Mail)</td>
             <td>
                 @Html.TextBoxFor(model => model.Mail)
                 @Html.ValidationMessageFor(model => model.Mail, "",  new { @class = "required" })
@@ -38,7 +41,7 @@
 
         </tr>
         <tr>
-            <td>@Html.Label("Gender")</td>
+            <td>@Html.LabelFor(model => model.Sex)</td>
             <td>
                 @Html.RadioButtonFor(model => model.Sex, "male")Male
                 @Html.RadioButtonFor(model => model.Sex, "female")Female
@@ -46,22 +49,22 @@
             </td>
         </tr>
         <tr>
-            <td>@Html.Label("User Address")</td>
+            <td>@Html.LabelFor(model => model.UserAddress)</td>
             <td>@Html.TextBoxFor(model => model.UserAddress,new { @MaxLength = 50 })
                 @Html.ValidationMessageFor(model=>model.UserAddress,"", new { @class = "required" })
             </td>
         </tr>
         <tr>
-            <td>@Html.Label("Password")</td>
+            <td>@Html.LabelFor(model => model.Password)</td>
             <td>
-                @Html.TextBoxFor(model => model.Password,new { @MinLength = 8,@MaxLength = 12 })
+                @Html.PasswordFor(model => model.Password,new { @MinLength = 8,@MaxLength = 12 })
                 @Html.ValidationMessageFor(Model => Model.Password, "",  new { @class = "required" })
             </td>
         </tr>
         <tr>
-            <td>@Html.Label("Conform Password")</td>
+            <td>@Html.LabelFor(model => model.ConfirmPassword)</td>
             <td>
-                @Html.TextBoxFor(model => model.ConfirmPassword,new { @MinLength = 8,@MaxLength = 12 })
+                @Html.PasswordFor(model => model.ConfirmPassword,new { @MinLength = 8,@MaxLength = 12 })
                 @Html.ValidationMessageFor(Model => Model.ConfirmPassword, "", new { @class = "required" })
             </td>
         </tr>

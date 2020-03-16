@@ -8,9 +8,9 @@ namespace OnlineFlightBooking.Models
 {
     public class SignInModel
     {
-        [Required]
+        [Required(ErrorMessage = "Phone number required")]
         public string Mobile { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Password required")]
         public string Password { get; set; }
     }
 }

@@ -205,11 +205,11 @@
     <Content Include="Views\Flight\EditFlight.cshtml" />
     <Content Include="Views\User\UserDisplay.cshtml" />
     <Content Include="Views\FlightTravelClasses\CreateClass.cshtml" />
-    <Content Include="Views\FlightTravelClasses\DeleteClass.cshtml" />
     <Content Include="Views\FlightTravelClasses\Details.cshtml" />
     <Content Include="Views\FlightTravelClasses\EditClass.cshtml" />
     <Content Include="Views\FlightTravelClasses\DisplayClass.cshtml" />
     <Content Include="Views\Flight\DisplayFlight.cshtml" />
+    <Content Include="Views\FlightTravelClasses\DeleteClass.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

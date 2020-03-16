@@ -16,9 +16,9 @@ namespace OnlineFlightBooking.BL
         {
             FlightRepository.AddFlight(flight);
         }
-        public static Flight GetDetails(int flightId)
+        public static Flight GetFlightDetails(int flightId)
         {
-            Flight flight = FlightRepository.GetDetails(flightId);
+            Flight flight = FlightRepository.GetFlightDetails(flightId);
             return flight;
         }
         public static FlightTravelClass GetDetailsClass(int id)
@@ -40,14 +40,24 @@ namespace OnlineFlightBooking.BL
             FlightRepository.DeleteFlight(flight);
         }
 
-        public static IEnumerable<TravelClass> GetClass()
+        public static IEnumerable<TravelClass> GetTravelClass()
         {
-            return FlightRepository.GetClass();
+            return FlightRepository.GetTravelClass();
         }
 
         public static void CreateClass(FlightTravelClass create)
         {
             FlightRepository.CreateClass(create);
+        }
+
+        public static void EditClass(FlightTravelClass flightTravelClass)
+        {
+            FlightRepository.EditClass(flightTravelClass);
+        }
+
+        public static void DeleteFlightTravelClass(FlightTravelClass flightTravelClass)
+        {
+            FlightRepository.DeleteFlightTravelClass(flightTravelClass);
         }
     }
 }

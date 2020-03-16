@@ -14,7 +14,6 @@ namespace OnlineFlightBooking.Controllers
 {
     public class FlightTravelClassesController : Controller
     {
-        private UserContext db = new UserContext();
 
         // GET: FlightTravelClasses
         public ActionResult DisplayClass()
@@ -23,13 +22,13 @@ namespace OnlineFlightBooking.Controllers
             IEnumerable<FlightTravelClass> TravelClass = FlightBL.DisplayClass(flightId);
             return View(TravelClass);
         }
-        // GET: FlightTravelClasses/GetClass
+        // GET: FlightTravelClasses/GetTravelClass
         [HttpGet]
         public ActionResult CreateClass()
         {
             FlightTravelClass flightTravelClass = new FlightTravelClass();
             flightTravelClass.FlightId = Convert.ToInt32(TempData["FlightId"]);
-            ViewBag.ClassId = new SelectList(FlightBL.GetClass(),"ClassId", "ClassName");
+            ViewBag.ClassId = new SelectList(FlightBL.GetTravelClass(),"ClassId", "ClassName");
             FlightTravelClassModel flightTravelClassModel= AutoMapper.Mapper.Map<FlightTravelClass, FlightTravelClassModel>(flightTravelClass);
             return View(flightTravelClassModel);
         }
@@ -44,15 +43,15 @@ namespace OnlineFlightBooking.Controllers
                 TempData["FlightId"] = create.FlightId;
                 return RedirectToAction("DisplayFlight","Flight");
             }
-            ViewBag.Class_Id = new SelectList(FlightBL.GetClass(), "ClassId", "ClassName", flightTravelClassModel.ClassId);
+            ViewBag.Class_Id = new SelectList(FlightBL.GetTravelClass(), "ClassId", "ClassName", flightTravelClassModel.ClassId);
             return View(flightTravelClassModel);
         }
-
+        [HttpGet]
         // GET: FlightTravelClasses/Edit/5
         public ActionResult EditClass(int id)
         {
             FlightTravelClass flightTravelClass =FlightBL.GetDetailsClass(id);
-            ViewBag.ClassId = new SelectList(FlightBL.GetClass(), "ClassId", "ClassName");
+            ViewBag.ClassId = new SelectList(FlightBL.GetTravelClass(), "ClassId", "ClassName");
             FlightTravelClassModel flightTravelClassModel = AutoMapper.Mapper.Map<FlightTravelClass, FlightTravelClassModel>(flightTravelClass);
             return View(flightTravelClassModel);
         }
@@ -62,39 +61,30 @@ namespace OnlineFlightBooking.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(flightTravelClass).State = EntityState.Modified;
-                db.SaveChanges();
+                FlightBL.EditClass(flightTravelClass);
                 return RedirectToAction("DisplayFlight","Flight");
             }
-            ViewBag.Flight_Id = new SelectList(db.FlightEntity, "FlightId", "FlightName", flightTravelClass.FlightId);
-            ViewBag.Class_Id = new SelectList(db.TravelClasses, "ClassId", "ClassName", flightTravelClass.ClassId);
+            ViewBag.Flight_Id = new SelectList(FlightBL.DisplayFlight(), "FlightId", "FlightName", flightTravelClass.FlightId);
+            ViewBag.Class_Id = new SelectList(FlightBL.GetTravelClass(), "ClassId", "ClassName", flightTravelClass.ClassId);
             return View(flightTravelClass);
         }
 
+        [HttpGet]
         // GET: FlightTravelClasses/Delete/5
-        public ActionResult DeleteClass(int? id)
+        public ActionResult DeleteClass(int id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            FlightTravelClass flightTravelClass = db.FlightTravelClasses.Find(id);
-            if (flightTravelClass == null)
-            {
-                return HttpNotFound();
-            }
-            return View(flightTravelClass);
+            FlightTravelClass flightTravelClass = FlightBL.GetDetailsClass(id);
+            FlightTravelClassModel delete = AutoMapper.Mapper.Map<FlightTravelClass,FlightTravelClassModel>(flightTravelClass);
+            return View(delete);
         }
 
         // POST: FlightTravelClasses/Delete/5
-        [HttpPost, ActionName("DeleteClass")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        [HttpPost]
+        public ActionResult DeleteClass(FlightTravelClassModel delete)
         {
-            FlightTravelClass flightTravelClass = db.FlightTravelClasses.Find(id);
-            db.FlightTravelClasses.Remove(flightTravelClass);
-            db.SaveChanges();
-            return RedirectToAction("DisplayClass");
+            FlightTravelClass flightTravelClass = AutoMapper.Mapper.Map<FlightTravelClassModel, FlightTravelClass>(delete);
+            FlightBL.DeleteFlightTravelClass(flightTravelClass);
+            return RedirectToAction("DisplayFlight","Flight");
         }
     }
 }

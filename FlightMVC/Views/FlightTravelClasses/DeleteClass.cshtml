@@ -1,4 +1,4 @@
-﻿@model OnilneFlightBooking.Entity.FlightTravelClass
+﻿@model OnlineFlightBooking.Models.FlightTravelClassModel
 
 @{
     ViewBag.Title = "Delete";
@@ -7,50 +7,33 @@
 <h2>Delete</h2>
 
 <h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>FlightTravelClass</h4>
-    <hr />
-    <dl>
-        <dt>
-            @Html.DisplayNameFor(model => model.Flight.FlightName)
-        </dt>
+@using (Html.BeginForm("DeleteClass", "FlightTravelClasses"))
+{
+    @Html.HiddenFor(Model => Model.FlightTravelClassId)
+    <div>
+        <h4>FlightTravelClass</h4>
+        <table>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.SeatCount)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.SeatCount)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.DisplayNameFor(model => model.SeatCost)
+                </td>
 
-        <dd>
-            @Html.DisplayFor(model => model.Flight.FlightName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.TravelClass.ClassName)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.TravelClass.ClassName)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SeatCount)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SeatCount)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SeatCost)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SeatCost)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+                <td>
+                    @Html.DisplayFor(model => model.SeatCost)
+                </td>
+            </tr>
+        </table>
+        <div>
+            <input type="submit" value="Delete" /> |
+            @Html.ActionLink("Back to DisplayFlight", "DisplayFlight", "Flight")
         </div>
-    }
-</div>
+    </div>
+}

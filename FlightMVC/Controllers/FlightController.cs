@@ -35,14 +35,14 @@ namespace OnlineFlightBooking.Controllers
                 FlightBL.AddFlight(flight);
                 TempData["message"] = "Flight added successfully";
                 TempData["FlightId"] = flight.FlightId;
-                return RedirectToAction("GetClass", "FlightTravelClasses");
+                return RedirectToAction("CreateClass", "FlightTravelClasses");
             }
             return View();
         }
         [HttpGet]
         public ActionResult EditFlight(int Id)
         {
-            Flight flight = FlightBL.GetDetails(Id); 
+            Flight flight = FlightBL.GetFlightDetails(Id); 
             FlightModel flightModel = AutoMapper.Mapper.Map<Flight,FlightModel>(flight);
             return View(flightModel);
         }
@@ -62,7 +62,7 @@ namespace OnlineFlightBooking.Controllers
         [HttpGet]
         public ActionResult DeleteFlight(int Id)
         {
-            Flight flight = FlightBL.GetDetails(Id);
+            Flight flight = FlightBL.GetFlightDetails(Id);
             FlightModel flightModel = AutoMapper.Mapper.Map<Flight, FlightModel>(flight);
             return View(flightModel);
         }

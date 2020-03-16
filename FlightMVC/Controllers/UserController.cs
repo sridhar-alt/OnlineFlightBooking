@@ -50,7 +50,7 @@ namespace OnlineFlightBooking.Controllers
                     TempData["message"] = "user Login successfull";
                     return RedirectToAction("UserDisplay","User");
                 }
-                TempData["message"] = "Incorrect mobile number or password";
+                ViewBag.message = "Incorrect mobile number or password";
             }
             return View();
         }
