@@ -1,6 +1,4 @@
 ﻿using OnilneFlightBooking.Entity;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -10,14 +8,14 @@ namespace OnlineFlightbooking.DAL
 {
     public class FlightRepository
     {
-        public static List<Flight> FlightList()
+        public static List<Flight> FlightList()  //Returns the Flight list from the database
         {
             using (UserContext userContext = new UserContext())
             {
                 return userContext.FlightEntity.ToList();
             }
         }
-        public static IEnumerable<Flight> DisplayFlight()
+        public static IEnumerable<Flight> DisplayFlight()       //Returns the Flight list for display
         {
             using (UserContext userContext = new UserContext())
             {
@@ -25,7 +23,7 @@ namespace OnlineFlightbooking.DAL
                 return flightDetails;
             }
         }
-        public static void AddFlight(Flight flight)
+        public static void AddFlight(Flight flight)         //To Add a flight details to the table from the Database
         {
             using (UserContext userContext = new UserContext())
             {
@@ -33,7 +31,7 @@ namespace OnlineFlightbooking.DAL
                 userContext.SaveChanges();
             }
         }
-        public static IEnumerable<FlightTravelClass> DisplayClass(int flightId)
+        public static IEnumerable<FlightTravelClass> DisplayClass(int flightId)     //Returns the FlightTravelClass Result based on the FlightId and the  flightName and the Travel Class from the DataBase
         {
 
             using (UserContext userContext = new UserContext())
@@ -42,7 +40,7 @@ namespace OnlineFlightbooking.DAL
                 return TravelClass;
             }
         }
-        public static void CreateClass(FlightTravelClass create)
+        public static void CreateClass(FlightTravelClass create)        //Add new FlightTravelClass to the table in the DataBase
         {
             using (UserContext userContext = new UserContext())
             {
@@ -50,7 +48,7 @@ namespace OnlineFlightbooking.DAL
                 userContext.SaveChanges();
             }
         }
-        public static void EditClass(FlightTravelClass flightTravelClass)
+        public static void EditClass(FlightTravelClass flightTravelClass)   //Edit the FlightTravelClass in the table 
         {
             using (UserContext userContext = new UserContext())
             {
@@ -58,7 +56,7 @@ namespace OnlineFlightbooking.DAL
                 userContext.SaveChanges();
             }
         }
-        public static void DeleteFlightTravelClass(FlightTravelClass deleteClass)
+        public static void DeleteFlightTravelClass(FlightTravelClass deleteClass)       //Delete the FlightTravelClass in the table
         {
             using(UserContext userContext=new UserContext())
             {
@@ -69,7 +67,7 @@ namespace OnlineFlightbooking.DAL
             }
         }
 
-        public static IEnumerable<TravelClass> GetTravelClass()
+        public static IEnumerable<TravelClass> GetTravelClass()         //return the travelclass list from the DataBase 
         {
             using (UserContext userContext = new UserContext())
             {
@@ -78,7 +76,7 @@ namespace OnlineFlightbooking.DAL
             }
         }
 
-        public static FlightTravelClass GetDetailsClass(int id)
+        public static FlightTravelClass GetDetailsClass(int id)         //return the FlightTravelClass Value Based on the FlightTravelClass Id 
         {
             using (UserContext userContext = new UserContext())
             {
@@ -88,14 +86,14 @@ namespace OnlineFlightbooking.DAL
         }
         public static Flight GetFlightDetails(int flightId)
         {
-            using (UserContext userContext = new UserContext())
+            using (UserContext userContext = new UserContext())     //return the Flight Value Based on the Flight Id 
             {
                 Flight flight = userContext.FlightEntity.Where(model => model.FlightId == flightId).SingleOrDefault();
                 return flight;
             }
         }
 
-        public static void UpdateFlight(Flight flight)
+        public static void UpdateFlight(Flight flight)      //Modify the flight details in the table flight
         {
             using (UserContext userContext = new UserContext())
             {
@@ -104,7 +102,7 @@ namespace OnlineFlightbooking.DAL
             }
         }
 
-        public static void DeleteFlight(Flight flight)
+        public static void DeleteFlight(Flight flight)          //Delete the flight details based on the flightId in the table Flight
         {
             using (UserContext userContext = new UserContext())
             {

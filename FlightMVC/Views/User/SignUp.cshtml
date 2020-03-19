@@ -41,11 +41,11 @@
 
         </tr>
         <tr>
-            <td>@Html.LabelFor(model => model.Sex)</td>
+            <td>@Html.LabelFor(model => model.Gender)</td>
             <td>
-                @Html.RadioButtonFor(model => model.Sex, "male")Male
-                @Html.RadioButtonFor(model => model.Sex, "female")Female
-                @Html.ValidationMessageFor(Model => Model.Sex, "",  new { @class = "required" })
+                @Html.RadioButtonFor(model => model.Gender, "male")Male
+                @Html.RadioButtonFor(model => model.Gender, "female")Female
+                @Html.ValidationMessageFor(Model => Model.Gender, "",  new { @class = "required" })
             </td>
         </tr>
         <tr>

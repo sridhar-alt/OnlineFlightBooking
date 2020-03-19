@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace OnlineFlightBooking.Models
 {
+    //Model for User SignIn Entity
     public class SignInModel
     {
         [Required(ErrorMessage = "Phone number required")]

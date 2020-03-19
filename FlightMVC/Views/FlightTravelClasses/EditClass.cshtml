@@ -6,7 +6,6 @@
 
 <h2>Edit</h2>
 
-
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -30,7 +29,7 @@
                 @Html.LabelFor(model => model.ClassId)
             </td>
             <td>
-                @Html.DisplayFor(model => model.ClassId)
+                @Html.DropDownListFor(model => model.ClassId,ViewBag.ClassId as SelectList)
                 @Html.ValidationMessageFor(model => model.ClassId, "", new { @class = "required" })
             </td>
         </tr>

@@ -7,7 +7,7 @@ namespace OnlineFlightbooking.DAL
 {
     public class UserRepository
     {
-        public static void RegisterUser(User user)
+        public static void RegisterUser(User user)          //Add the user details into the Database Table user
         {
             using (UserContext userContext = new UserContext())
             {
@@ -19,32 +19,33 @@ namespace OnlineFlightbooking.DAL
                         SqlParameter name = new SqlParameter("@Name", user.Name);
                         SqlParameter Dob = new SqlParameter("@Dob", user.Dob);
                         SqlParameter mail = new SqlParameter("@Mail", user.Mail);
-                        SqlParameter sex = new SqlParameter("@Sex", user.Sex);
+                        SqlParameter gender = new SqlParameter("@Gender", user.Gender);
                         SqlParameter userAddress = new SqlParameter("@UserAddress", user.UserAddress);
                         SqlParameter password = new SqlParameter("@Password", user.Password);
                         SqlParameter role = new SqlParameter("@Role", user.Role);
-                        int result = userContext.Database.ExecuteSqlCommand("sp_InsertUser @Mobile,@Name,@Dob,@Mail,@Sex,@UserAddress,@Password,@Role", mobile, name, Dob, mail, sex, userAddress, password, role);
+                        int result = userContext.Database.ExecuteSqlCommand("sp_InsertUser @Mobile,@Name,@Dob,@Mail,@Gender,@UserAddress,@Password,@Role", mobile, name, Dob, mail, gender, userAddress, password, role);
                         transaction.Commit();
                     }
                     catch(Exception)
                     {
                         transaction.Rollback();
+                        
                     }
                 }
             }
         }
-        public static string ValidateLogin(User user)
+        public static string ValidateLogin(User user)       //Validate the login user based on the mobile number and the Password 
         {
             using (UserContext userContext = new UserContext())
             {
                 User userDb = userContext.UserEntity.Where(model => model.Mobile == user.Mobile).Where(model => model.Password == user.Password).SingleOrDefault();
-                if (userDb != null)
+                if (userDb != null)             
                 {
-                    return userDb.Role;
+                    return userDb.Role;             //if the password and the userid present return the role of the user.
                 }
                 else
                 {
-                    return "NotFound";
+                    return "NotFound";              // if it not present it return "Not present"
                 }
             }
         }

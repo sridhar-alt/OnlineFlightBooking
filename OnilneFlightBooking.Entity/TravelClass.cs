@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+
 
 namespace OnilneFlightBooking.Entity
 {
@@ -13,6 +9,7 @@ namespace OnilneFlightBooking.Entity
         [Required]
         public int ClassId { get; set; }
         [Required]
+        [StringLength(25)]
         public string ClassName { get; set; } 
     }
 }

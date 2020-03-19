@@ -1,12 +1,10 @@
 ﻿using OnilneFlightBooking.Entity;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace OnlineFlightBooking.Models
 {
+    //Model for User Entity SignUp
     public class SignUpModel
     {
 
@@ -16,7 +14,6 @@ namespace OnlineFlightBooking.Models
         public string Name { get; set; }
 
         [Required(ErrorMessage = "Phone number required")]
-        [MaxLength(10)]
         [DataType(DataType.PhoneNumber)]
         [RegularExpression(@"^([0-9]{10})$", ErrorMessage = "Enter the numeric digits.")]
         public string Mobile { get; set; }
@@ -28,7 +25,7 @@ namespace OnlineFlightBooking.Models
         public string Mail { get; set; }
 
         [Required(ErrorMessage = "Gender required")]
-        public sex Sex { get; set; }
+        public gender Gender { get; set; }
         [Required]
         [StringLength(50, ErrorMessage = "Name cannot be longer than 30 characters.")]
         public string UserAddress { get; set; }

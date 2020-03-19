@@ -1,12 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
 using System.Web.Mvc;
 using OnilneFlightBooking.Entity;
-using OnlineFlightbooking.DAL;
 using OnlineFlightBooking.BL;
 using OnlineFlightBooking.Models;
 
@@ -20,7 +15,7 @@ namespace OnlineFlightBooking.Controllers
         {
             int flightId = Convert.ToInt32(TempData["FlightId"]);
             IEnumerable<FlightTravelClass> TravelClass = FlightBL.DisplayClass(flightId);
-            return View(TravelClass);
+            return View(TravelClass);       
         }
         // GET: FlightTravelClasses/GetTravelClass
         [HttpGet]
@@ -29,44 +24,48 @@ namespace OnlineFlightBooking.Controllers
             FlightTravelClass flightTravelClass = new FlightTravelClass();
             flightTravelClass.FlightId = Convert.ToInt32(TempData["FlightId"]);
             ViewBag.ClassId = new SelectList(FlightBL.GetTravelClass(),"ClassId", "ClassName");
-            FlightTravelClassModel flightTravelClassModel= AutoMapper.Mapper.Map<FlightTravelClass, FlightTravelClassModel>(flightTravelClass);
+            FlightTravelClassModel flightTravelClassModel= AutoMapper.Mapper.Map<FlightTravelClass, FlightTravelClassModel>(flightTravelClass);     //Auto Mapper entity to model
             return View(flightTravelClassModel);
         }
+        // POST: FlightTravelClasses/GetTravelClass
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult CreateClass( FlightTravelClassModel flightTravelClassModel)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid)     //condition pass when all the model state validation is true
             {
-                FlightTravelClass create = AutoMapper.Mapper.Map<FlightTravelClassModel,FlightTravelClass>(flightTravelClassModel);
+                FlightTravelClass create = AutoMapper.Mapper.Map<FlightTravelClassModel,FlightTravelClass>(flightTravelClassModel);     //Auto Mapper model to entity
                 FlightBL.CreateClass(create);
                 TempData["FlightId"] = create.FlightId;
                 return RedirectToAction("DisplayFlight","Flight");
             }
             ViewBag.Class_Id = new SelectList(FlightBL.GetTravelClass(), "ClassId", "ClassName", flightTravelClassModel.ClassId);
-            return View(flightTravelClassModel);
+            return View(flightTravelClassModel);            //Calling View for the Create Class(when the ModelState is in valid)
         }
         [HttpGet]
         // GET: FlightTravelClasses/Edit/5
         public ActionResult EditClass(int id)
         {
             FlightTravelClass flightTravelClass =FlightBL.GetDetailsClass(id);
-            ViewBag.ClassId = new SelectList(FlightBL.GetTravelClass(), "ClassId", "ClassName");
-            FlightTravelClassModel flightTravelClassModel = AutoMapper.Mapper.Map<FlightTravelClass, FlightTravelClassModel>(flightTravelClass);
+            IEnumerable<TravelClass> travelClass=FlightBL.GetTravelClass();
+            ViewBag.ClassId = new SelectList(travelClass, "ClassId", "ClassName");
+            FlightTravelClassModel flightTravelClassModel = AutoMapper.Mapper.Map<FlightTravelClass, FlightTravelClassModel>(flightTravelClass);       //Auto Mapper entity to model
             return View(flightTravelClassModel);
         }
+        // POST: FlightTravelClasses/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditClass(FlightTravelClass flightTravelClass)
+        public ActionResult EditClass(FlightTravelClassModel flightTravelClass)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid)     //condition pass when all the model state validation is true
             {
-                FlightBL.EditClass(flightTravelClass);
+                FlightTravelClass edit = AutoMapper.Mapper.Map<FlightTravelClassModel, FlightTravelClass>(flightTravelClass);     //Auto Mapper model to entity
+                FlightBL.EditClass(edit);
                 return RedirectToAction("DisplayFlight","Flight");
             }
             ViewBag.Flight_Id = new SelectList(FlightBL.DisplayFlight(), "FlightId", "FlightName", flightTravelClass.FlightId);
             ViewBag.Class_Id = new SelectList(FlightBL.GetTravelClass(), "ClassId", "ClassName", flightTravelClass.ClassId);
-            return View(flightTravelClass);
+            return View(flightTravelClass);     //Calling View for the Edit Class(when the ModelState is in valid)
         }
 
         [HttpGet]
@@ -74,7 +73,8 @@ namespace OnlineFlightBooking.Controllers
         public ActionResult DeleteClass(int id)
         {
             FlightTravelClass flightTravelClass = FlightBL.GetDetailsClass(id);
-            FlightTravelClassModel delete = AutoMapper.Mapper.Map<FlightTravelClass,FlightTravelClassModel>(flightTravelClass);
+            ViewBag.ClassId = new SelectList(FlightBL.GetTravelClass(), "ClassId", "ClassName");
+            FlightTravelClassModel delete = AutoMapper.Mapper.Map<FlightTravelClass,FlightTravelClassModel>(flightTravelClass);     //Auto Mapper entity to model
             return View(delete);
         }
 
@@ -82,7 +82,7 @@ namespace OnlineFlightBooking.Controllers
         [HttpPost]
         public ActionResult DeleteClass(FlightTravelClassModel delete)
         {
-            FlightTravelClass flightTravelClass = AutoMapper.Mapper.Map<FlightTravelClassModel, FlightTravelClass>(delete);
+            FlightTravelClass flightTravelClass = AutoMapper.Mapper.Map<FlightTravelClassModel, FlightTravelClass>(delete);     //Auto Mapper model to entity
             FlightBL.DeleteFlightTravelClass(flightTravelClass);
             return RedirectToAction("DisplayFlight","Flight");
         }
